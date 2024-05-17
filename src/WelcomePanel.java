@@ -14,38 +14,38 @@ public class WelcomePanel extends JPanel implements ActionListener {
     private JButton clearButton;
     private JFrame enclosingFrame;
     private BufferedImage img;
-    private int a;
 
     public WelcomePanel(JFrame frame) {
         enclosingFrame = frame;
-        /*try {
-            goomba = ImageIO.read(new File("src/goomba.png"));
+        try {
+            img = ImageIO.read(new File("src/background.jpg"));
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        */
-        submitButton = new JButton("Submit");
+
+        submitButton = new JButton("Play!");
         clearButton = new JButton("Clear");
           // textField doesn't need a listener since nothing needs to happen when we type in text
         add(submitButton);
         add(clearButton);
         submitButton.addActionListener(this);
         clearButton.addActionListener(this);
-        a = 0;
+        submitButton.setLocation(200, 200);
     }
 
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        a++;
+        g.drawImage(img,0, 0, null);
         //https://stackoverflow.com/questions/10083913/how-to-rotate-text-with-graphics2d-in-java
         Graphics2D g2 = (Graphics2D) g;
         Font font = new Font("Elephant", Font.BOLD, 100);
+        g2.setColor(Color.BLUE);
         AffineTransform affineTransform = new AffineTransform();
-        affineTransform.rotate(Math.toRadians(a), 50, 200);
+        affineTransform.rotate(Math.toRadians(20), 50, 300);
         Font rotatedFont = font.deriveFont(affineTransform);
         g2.setFont(rotatedFont);
-        g2.drawString("Dating Simulator",50,200);
+        g2.drawString("placeholder text",50,200);
         g2.dispose();
     }
 

@@ -6,15 +6,11 @@ import java.io.File;
 import java.io.IOException;
 
 public class GraphicsPanel extends JPanel {
-    private BufferedImage starImg;
-    private double stringX;
-    private double starY;
+    private BufferedImage background;
 
     public GraphicsPanel() {
-        stringX = 50;
-        starY = 50;
         try {
-            starImg = ImageIO.read(new File("src/star.png"));
+            background = ImageIO.read(new File("src/ddlcbg.jpg"));
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -23,21 +19,6 @@ public class GraphicsPanel extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);  // just do this
-        stringX += 0.2;
-        if (stringX > 500) {
-            stringX = 0;
-        }
-        starY += 0.05;
-        if (starY > 400) {
-            starY = 0;
-        }
-        g.setColor(Color.BLUE);
-        g.drawRect(50, 100, 40, 20);
-        g.setColor(Color.RED);
-        g.fillRect(50, 200, 40, 20);
-        g.drawImage(starImg, 200, (int) starY, null);
-        g.setColor(Color.BLACK);
-        g.setFont(new Font("Courier New", Font.BOLD, 18));
-        g.drawString("HELLO!", (int) stringX, 300);
+        g.drawImage(background, 0, 0, null);
     }
 }

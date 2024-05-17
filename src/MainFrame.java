@@ -7,7 +7,7 @@ public class MainFrame implements Runnable {
         JFrame frame = new JFrame("Intro to Animation");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1920, 1080);
-        frame.setLocation(300, 50);
+        frame.setLocation(0, 0);
 
         // create and add panel
         panel = new GraphicsPanel();
