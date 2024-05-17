@@ -3,17 +3,18 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 public class WelcomePanel extends JPanel implements ActionListener {
 
-    private JTextField textField;
     private JButton submitButton;
     private JButton clearButton;
     private JFrame enclosingFrame;
-    private BufferedImage goomba;
+    private BufferedImage img;
+    private int a;
 
     public WelcomePanel(JFrame frame) {
         enclosingFrame = frame;
@@ -23,26 +24,29 @@ public class WelcomePanel extends JPanel implements ActionListener {
             System.out.println(e.getMessage());
         }
         */
-        textField = new JTextField(10);
         submitButton = new JButton("Submit");
         clearButton = new JButton("Clear");
-        add(textField);  // textField doesn't need a listener since nothing needs to happen when we type in text
+          // textField doesn't need a listener since nothing needs to happen when we type in text
         add(submitButton);
         add(clearButton);
         submitButton.addActionListener(this);
         clearButton.addActionListener(this);
+        a = 0;
     }
 
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.setFont(new Font("Elephant", Font.BOLD, 100));
-        g.setColor(Color.BLACK);
-        g.drawString("Please enter your name:", 50, 200);
-        g.drawImage(goomba, 200, 50, null);
-        textField.setLocation(50, 50);
-        submitButton.setLocation(50, 100);
-        clearButton.setLocation(150, 100);
+        a++;
+        //https://stackoverflow.com/questions/10083913/how-to-rotate-text-with-graphics2d-in-java
+        Graphics2D g2 = (Graphics2D) g;
+        Font font = new Font("Elephant", Font.BOLD, 100);
+        AffineTransform affineTransform = new AffineTransform();
+        affineTransform.rotate(Math.toRadians(a), 50, 200);
+        Font rotatedFont = font.deriveFont(affineTransform);
+        g2.setFont(rotatedFont);
+        g2.drawString("Dating Simulator",50,200);
+        g2.dispose();
     }
 
     // ACTIONLISTENER INTERFACE METHODS
