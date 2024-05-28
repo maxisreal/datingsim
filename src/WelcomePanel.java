@@ -24,12 +24,9 @@ public class WelcomePanel extends JPanel implements ActionListener {
         }
 
         submitButton = new JButton("Play!");
-        clearButton = new JButton("Clear");
           // textField doesn't need a listener since nothing needs to happen when we type in text
         add(submitButton);
-        add(clearButton);
         submitButton.addActionListener(this);
-        clearButton.addActionListener(this);
         submitButton.setLocation(200, 200);
     }
 
