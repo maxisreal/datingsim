@@ -24,10 +24,13 @@ public class WelcomePanel extends JPanel implements ActionListener {
         }
 
         submitButton = new JButton("Play!");
+        submitButton.setFont(new Font("Arial", Font.PLAIN, 40));
+        submitButton.setForeground(Color.BLUE);
+        submitButton.setBackground(new Color(216, 190, 216));
           // textField doesn't need a listener since nothing needs to happen when we type in text
         add(submitButton);
         submitButton.addActionListener(this);
-        submitButton.setLocation(200, 200);
+        submitButton.setPreferredSize(new Dimension(150, 50));
     }
 
     @Override
@@ -39,11 +42,11 @@ public class WelcomePanel extends JPanel implements ActionListener {
         Font font = new Font("Elephant", Font.BOLD, 100);
         g2.setColor(Color.BLUE);
         AffineTransform affineTransform = new AffineTransform();
-        affineTransform.rotate(Math.toRadians(20), 50, 300);
+        affineTransform.rotate(Math.toRadians(10), 50, 300);
         Font rotatedFont = font.deriveFont(affineTransform);
         g2.setFont(rotatedFont);
-        g2.drawString("placeholder text",50,200);
-        g2.dispose();
+        g2.drawString("Dater: a very bad dating sim",50,200);
+        submitButton.setLocation(1000, 500);
     }
 
     // ACTIONLISTENER INTERFACE METHODS
