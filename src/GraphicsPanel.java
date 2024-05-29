@@ -68,5 +68,8 @@ public class GraphicsPanel extends JPanel {
         g.fillRect(1885-45-70-100, 15+35+70, 100, 440);
 
         g.drawImage(demo, 1200+60+50, 15+35+40, null);
+        g.setColor(Color.BLACK);
+        g.setFont(new Font("Yu Gothic UI", Font.BOLD, 100));
+        g.drawString("there's only one beer left", 50, 850);
     }
 }
