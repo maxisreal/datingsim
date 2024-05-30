@@ -4,9 +4,8 @@ import java.awt.event.KeyListener;
 public class KeyHandler implements KeyListener {
 
     private boolean wKeyPressed, sKeyPressed, aKeyPressed, dKeyPressed; // movement keys
-    private boolean fKeyPressed; // interact key
+    private boolean fKeyPressed, escKeyPressed, enterKeyPressed, spaceKeyPressed; // interact key
     private boolean upKeyPressed, downKeyPressed, leftKeyPressed, rightKeyPressed; // attack keys
-    private boolean escKeyPressed;
     public KeyHandler(){}
     public boolean isUpKeyPressed() {
         return upKeyPressed;
@@ -27,6 +26,7 @@ public class KeyHandler implements KeyListener {
     public boolean isEscKeyPressed() {
         return escKeyPressed;
     }
+    public boolean isEnterKeyPressed(){return enterKeyPressed;}
 
     public boolean isWKeyPressed() {
         return wKeyPressed;
@@ -46,6 +46,7 @@ public class KeyHandler implements KeyListener {
     public boolean isFKeyPressed() {
         return fKeyPressed;
     }
+    public boolean isSpaceKeyPressed(){return spaceKeyPressed;}
 
     public boolean isMovementKeyPressed() {
         return wKeyPressed || sKeyPressed || aKeyPressed || dKeyPressed;
@@ -70,16 +71,16 @@ public class KeyHandler implements KeyListener {
             case KeyEvent.VK_DOWN -> downKeyPressed = true;
             case KeyEvent.VK_LEFT -> leftKeyPressed = true;
             case KeyEvent.VK_RIGHT -> rightKeyPressed = true;
-            case KeyEvent.VK_ESCAPE ->  escKeyPressed = true;
+            case KeyEvent.VK_ESCAPE -> escKeyPressed = true;
+            case KeyEvent.VK_ENTER -> enterKeyPressed = true;
+            case KeyEvent.VK_SPACE -> spaceKeyPressed = true;
         }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
         switch (e.getKeyCode()) {
-            case KeyEvent.VK_W -> {
-                wKeyPressed = false;
-            }
+            case KeyEvent.VK_W -> wKeyPressed = false;
             case KeyEvent.VK_S -> sKeyPressed = false;
             case KeyEvent.VK_A -> aKeyPressed = false;
             case KeyEvent.VK_D -> dKeyPressed = false;
@@ -88,7 +89,9 @@ public class KeyHandler implements KeyListener {
             case KeyEvent.VK_LEFT -> leftKeyPressed = false;
             case KeyEvent.VK_RIGHT -> rightKeyPressed = false;
             case KeyEvent.VK_F -> fKeyPressed = false;
-            case KeyEvent.VK_ESCAPE ->  escKeyPressed = false;
+            case KeyEvent.VK_ESCAPE -> escKeyPressed = false;
+            case KeyEvent.VK_ENTER -> enterKeyPressed = false;
+            case KeyEvent.VK_SPACE -> spaceKeyPressed = false;
         }
     }
 }

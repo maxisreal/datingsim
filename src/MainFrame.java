@@ -2,6 +2,7 @@ import javax.swing.*;
 
 public class MainFrame implements Runnable {
     private GraphicsPanel panel;
+    private KeyHandler keys;
 
     public MainFrame() {
         JFrame frame = new JFrame("Intro to Animation");
@@ -12,6 +13,9 @@ public class MainFrame implements Runnable {
         // create and add panel
         panel = new GraphicsPanel();
         frame.add(panel);
+
+        keys = new KeyHandler();
+        frame.addKeyListener(keys);
 
         // display the frame
         frame.setVisible(true);
@@ -24,7 +28,9 @@ public class MainFrame implements Runnable {
     // Runnable interface method
     public void run() {
         while (true) {
-            panel.repaint();  // we don't ever call paintComponent directly
+            panel.repaint();
+            if (keys.)
+            // we don't ever call paintComponent directly
         }
     }
 }

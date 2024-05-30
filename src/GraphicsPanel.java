@@ -4,10 +4,13 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class GraphicsPanel extends JPanel {
     private BufferedImage background;
     private BufferedImage demo;
+    private ArrayList<String> list;
+    private int num;
 
     public GraphicsPanel() {
         try {
@@ -20,6 +23,11 @@ public class GraphicsPanel extends JPanel {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+        num = 0;
+        list = new ArrayList<String>();
+        list.add("there's only one beer left");
+        list.add("hghahghahusgasjgasgs");
+        list.add("test");
     }
 
     @Override
@@ -28,6 +36,7 @@ public class GraphicsPanel extends JPanel {
         g.setColor(new Color(255,214,214));
         g.fillRect(0, 0, 1920, 1080);
         g.drawImage(background, 0, 0, null);
+
         g.setColor(Color.PINK);
         //top frame side
         g.fillRect(1200, 0 , 750, 15);
@@ -68,8 +77,17 @@ public class GraphicsPanel extends JPanel {
         g.fillRect(1885-45-70-100, 15+35+70, 100, 440);
 
         g.drawImage(demo, 1200+60+50, 15+35+40, null);
+
         g.setColor(Color.BLACK);
         g.setFont(new Font("Yu Gothic UI", Font.BOLD, 100));
-        g.drawString("there's only one beer left", 50, 850);
+        g.drawString(list.get(num), 50, 850);
     }
+    public void toggle(){
+        num++;
+        if (num >= list.size()){
+            num = 0;
+        }
+
+    }
+
 }
