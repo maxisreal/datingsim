@@ -29,8 +29,11 @@ public class MainFrame implements Runnable {
     public void run() {
         while (true) {
             panel.repaint();
-            if (keys.)
-            // we don't ever call paintComponent directly
+            if (keys.isEnterKeyPressed()||keys.isSpaceKeyPressed()){
+                panel.toggle();
+            }
+            //todo: make it work if the keys are released, not pressed
+
         }
     }
 }
