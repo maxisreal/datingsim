@@ -26,7 +26,6 @@ public class KeyHandler implements KeyListener {
     public boolean isEscKeyPressed() {
         return escKeyPressed;
     }
-    public boolean isEnterKeyPressed(){return enterKeyPressed;}
 
     public boolean isWKeyPressed() {
         return wKeyPressed;
@@ -46,7 +45,6 @@ public class KeyHandler implements KeyListener {
     public boolean isFKeyPressed() {
         return fKeyPressed;
     }
-    public boolean isSpaceKeyPressed(){return spaceKeyPressed;}
 
     public boolean isMovementKeyPressed() {
         return wKeyPressed || sKeyPressed || aKeyPressed || dKeyPressed;
@@ -59,9 +57,7 @@ public class KeyHandler implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        int code = e.getKeyCode();
-
-        switch (code) {
+        switch (e.getKeyCode()) {
             case KeyEvent.VK_W -> wKeyPressed = true;
             case KeyEvent.VK_S -> sKeyPressed = true;
             case KeyEvent.VK_A -> aKeyPressed = true;
@@ -90,8 +86,22 @@ public class KeyHandler implements KeyListener {
             case KeyEvent.VK_RIGHT -> rightKeyPressed = false;
             case KeyEvent.VK_F -> fKeyPressed = false;
             case KeyEvent.VK_ESCAPE -> escKeyPressed = false;
-            case KeyEvent.VK_ENTER -> enterKeyPressed = false;
-            case KeyEvent.VK_SPACE -> spaceKeyPressed = false;
+            //case KeyEvent.VK_ENTER -> enterKeyPressed = false;
+            //case KeyEvent.VK_SPACE -> spaceKeyPressed = false;
         }
+    }
+    public boolean isSpaceKeyReleased(){
+        if (spaceKeyPressed){
+            spaceKeyPressed = false;
+            return true;
+        }
+        return false;
+    }
+    public boolean isEnterKeyReleased(){
+        if (enterKeyPressed){
+            enterKeyPressed = false;
+            return true;
+        }
+        return false;
     }
 }

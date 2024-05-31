@@ -1,6 +1,9 @@
 import javax.imageio.ImageIO;
-import javax.swing.JPanel;
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -10,6 +13,7 @@ public class GraphicsPanel extends JPanel {
     private BufferedImage background;
     private BufferedImage demo;
     private ArrayList<String> list;
+    private boolean[] pressedKeys;
     private int num;
 
     public GraphicsPanel() {
@@ -24,6 +28,7 @@ public class GraphicsPanel extends JPanel {
             System.out.println(e.getMessage());
         }
         num = 0;
+        pressedKeys = new boolean[128];
         list = new ArrayList<String>();
         list.add("there's only one beer left");
         list.add("hghahghahusgasjgasgs");
@@ -87,6 +92,38 @@ public class GraphicsPanel extends JPanel {
         if (num >= list.size()){
             num = 0;
         }
+    }
+    // ----- KeyListener interface methods -----
+    public void keyTyped(KeyEvent e) { } // unimplemented
+
+    public void keyPressed(KeyEvent e) {
+        // see this for all keycodes: https://stackoverflow.com/questions/15313469/java-keyboard-keycodes-list
+        // A = 65, D = 68, S = 83, W = 87, left = 37, up = 38, right = 39, down = 40, space = 32, enter = 10
+        int key = e.getKeyCode();
+        pressedKeys[key] = true;
+    }
+
+    public void keyReleased(KeyEvent e) {
+        int key = e.getKeyCode();
+        pressedKeys[key] = false;
+    }
+
+    // ----- MouseListener interface methods -----
+    public void mouseClicked(MouseEvent e) { }  // unimplemented; if you move your mouse while clicking,
+    // this method isn't called, so mouseReleased is best
+
+    public void mousePressed(MouseEvent e) { } // unimplemented
+
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    public void mouseEntered(MouseEvent e) { } // unimplemented
+
+    public void mouseExited(MouseEvent e) { } // unimplemented
+
+    // ACTIONLISTENER INTERFACE METHODS: used for buttons AND timers!
+    public void actionPerformed(ActionEvent e) {
 
     }
 

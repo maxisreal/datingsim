@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.event.KeyEvent;
 
 public class MainFrame implements Runnable {
     private GraphicsPanel panel;
@@ -29,11 +30,9 @@ public class MainFrame implements Runnable {
     public void run() {
         while (true) {
             panel.repaint();
-            if (keys.isEnterKeyPressed()||keys.isSpaceKeyPressed()){
+            if (keys.isSpaceKeyReleased() || keys.isEnterKeyReleased()){
                 panel.toggle();
             }
-            //todo: make it work if the keys are released, not pressed
-
         }
     }
 }
