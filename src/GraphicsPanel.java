@@ -1,6 +1,7 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.util.Scanner;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -14,6 +15,7 @@ public class GraphicsPanel extends JPanel {
     private BufferedImage demo;
     private ArrayList<String> list;
     private int num;
+    private Scanner scan;
 
     public GraphicsPanel() {
         try {
@@ -26,11 +28,10 @@ public class GraphicsPanel extends JPanel {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+        Scanner scan = new Scanner(System.in);
         num = 0;
         list = new ArrayList<String>();
-        list.add("there's only one beer left");
-        list.add("hghahghahusgasjgasgs");
-        list.add("test");
+        loadWordsInto(list);
     }
 
     @Override
@@ -82,13 +83,38 @@ public class GraphicsPanel extends JPanel {
         g.drawImage(demo, 1200+60+50, 15+35+40, null);
 
         g.setColor(Color.BLACK);
-        g.setFont(new Font("Yu Gothic UI", Font.BOLD, 100));
-        g.drawString(list.get(num), 50, 850);
+        g.setFont(new Font("Letter Gothic", Font.BOLD, 90));
+        int a = 800;
+        for (String line : list.get(num).split("\n")) {
+           g.drawString(line, 30, a);
+           a += 100;
+        }
     }
     public void toggle(){
         num++;
         if (num >= list.size()){
             num = 0;
+        }
+    }
+    private static void loadWordsInto(ArrayList<String> list) {
+        try {
+            Scanner input = new Scanner(new File("src\\onebeer.txt"));
+            while (input.hasNext()) {
+                String str = input.nextLine();
+                int justright = 41;
+                if (str.length() > justright) {
+                    if (str.substring(0, 1).equals("\"")) {
+                        list.add(str.substring(0, str.substring(0, justright-1).lastIndexOf(" ")) + "\n" + str.substring(str.substring(0, justright-1).lastIndexOf(" ")));
+                    } else {
+                        list.add(str.substring(0, str.substring(0, justright-1).lastIndexOf(" ")) + "\n" + str.substring(str.substring(0, justright-1).lastIndexOf(" ") + 1));
+                    }
+                } else {
+                    list.add(str);
+                }
+            }
+
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
         }
     }
 
