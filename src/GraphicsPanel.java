@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 public class GraphicsPanel extends JPanel {
     private BufferedImage background;
+    private BufferedImage demoface;
     private BufferedImage demo;
     private ArrayList<String> list;
     private int num;
@@ -24,12 +25,28 @@ public class GraphicsPanel extends JPanel {
             System.out.println(e.getMessage());
         }
         try {
-            demo = ImageIO.read(new File("src/demo.png"));
+            demoface = ImageIO.read(new File("src/demo.png"));
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
         Scanner scan = new Scanner(System.in);
         num = 0;
+        ArrayList<BufferedImage> dance = new ArrayList<>();
+        for (int i = 0; i <= 24; i++) {
+            String filename;
+            if (i<10) {
+                filename = "src/conga/frame_0" + i + "_delay-0.1s.gif";
+            } else {
+                filename = "src/conga/frame_" + i + "_delay-0.1s.gif";
+            }
+            try {
+                dance.add(ImageIO.read(new File(filename)));
+            }
+            catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        demo = new Animation(dance, 66).getActiveFrame();
         list = new ArrayList<String>();
         loadWordsInto(list);
     }
@@ -80,7 +97,8 @@ public class GraphicsPanel extends JPanel {
         //right frame side
         g.fillRect(1885-45-70-100, 15+35+70, 100, 440);
 
-        g.drawImage(demo, 1200+60+50, 15+35+40, null);
+        g.drawImage(demoface, 1200+60+50, 15+35+40, null);
+        g.drawImage(demo, 100, 100, null);
 
         g.setColor(Color.BLACK);
         g.setFont(new Font("Letter Gothic", Font.BOLD, 90));
