@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class GraphicsPanel extends JPanel {
     private BufferedImage background;
     private BufferedImage demoface;
-    private BufferedImage demo;
+    private Animation demo;
     private ArrayList<String> list;
     private int num;
     private Scanner scan;
@@ -35,9 +35,9 @@ public class GraphicsPanel extends JPanel {
         for (int i = 0; i <= 24; i++) {
             String filename;
             if (i<10) {
-                filename = "src/conga/frame_0" + i + "_delay-0.1s.gif";
+                filename = "src/democonga/frame_0" + i + "_delay-0.1s-removebg-preview.png";
             } else {
-                filename = "src/conga/frame_" + i + "_delay-0.1s.gif";
+                filename = "src/democonga/frame_" + i + "_delay-0.1s-removebg-preview.png";
             }
             try {
                 dance.add(ImageIO.read(new File(filename)));
@@ -46,7 +46,7 @@ public class GraphicsPanel extends JPanel {
                 System.out.println(e.getMessage());
             }
         }
-        demo = new Animation(dance, 66).getActiveFrame();
+        demo = new Animation(dance, 66);
         list = new ArrayList<String>();
         loadWordsInto(list);
     }
@@ -98,7 +98,7 @@ public class GraphicsPanel extends JPanel {
         g.fillRect(1885-45-70-100, 15+35+70, 100, 440);
 
         g.drawImage(demoface, 1200+60+50, 15+35+40, null);
-        g.drawImage(demo, 100, 100, null);
+        g.drawImage(demo.getActiveFrame(), 420, 90,460, 498, null);
 
         g.setColor(Color.BLACK);
         g.setFont(new Font("Letter Gothic", Font.BOLD, 90));
